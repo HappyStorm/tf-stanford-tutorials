@@ -50,7 +50,7 @@ def word2vec(batch_gen):
     # TO DO
 
     # Step 5: define optimizer
-    
+
     # TO DO
 
     with tf.Session() as sess:

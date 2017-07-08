@@ -2,7 +2,7 @@
 Created by Danijar Hafner, edited by Chip Huyen
 for the class CS 20SI: "TensorFlow for Deep Learning Research"
 
-Based on Andrej Karpathy's blog: 
+Based on Andrej Karpathy's blog:
 http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 """
 from __future__ import print_function
@@ -62,7 +62,7 @@ def create_model(seq, temp, vocab, hidden=HIDDEN_SIZE):
     loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits[:, :-1], seq[:, 1:]))
     # sample the next character from Maxwell-Boltzmann Distribution with temperature temp
     # it works equally well without tf.exp
-    sample = tf.multinomial(tf.exp(logits[:, -1] / temp), 1)[:, 0] 
+    sample = tf.multinomial(tf.exp(logits[:, -1] / temp), 1)[:, 0]
     return loss, sample, in_state, out_state
 
 def training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, out_state):
@@ -71,11 +71,11 @@ def training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, o
     with tf.Session() as sess:
         writer = tf.summary.FileWriter('graphs/gist', sess.graph)
         sess.run(tf.global_variables_initializer())
-        
+
         ckpt = tf.train.get_checkpoint_state(os.path.dirname('checkpoints/arvix/checkpoint'))
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(sess, ckpt.model_checkpoint_path)
-        
+
         iteration = global_step.eval()
         for batch in read_batch(read_data(DATA_PATH, vocab)):
             batch_loss, _ = sess.run([loss, optimizer], {seq: batch})
@@ -111,6 +111,6 @@ def main():
     global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step')
     optimizer = tf.train.AdamOptimizer(LR).minimize(loss, global_step=global_step)
     training(vocab, seq, loss, optimizer, global_step, temp, sample, in_state, out_state)
-    
+
 if __name__ == '__main__':
     main()

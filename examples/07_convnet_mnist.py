@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import time 
+import time
 
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -44,8 +44,8 @@ global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step'
 
 with tf.variable_scope('conv1') as scope:
     # first, reshape the image to [BATCH_SIZE, 28, 28, 1] to make it work with tf.nn.conv2d
-    images = tf.reshape(X, shape=[-1, 28, 28, 1]) 
-    kernel = tf.get_variable('kernel', [5, 5, 1, 32], 
+    images = tf.reshape(X, shape=[-1, 28, 28, 1])
+    kernel = tf.get_variable('kernel', [5, 5, 1, 32],
                         initializer=tf.truncated_normal_initializer())
     biases = tf.get_variable('biases', [32],
                         initializer=tf.random_normal_initializer())
@@ -62,7 +62,7 @@ with tf.variable_scope('pool1') as scope:
 
 with tf.variable_scope('conv2') as scope:
     # similar to conv1, except kernel now is of the size 5 x 5 x 32 x 64
-    kernel = tf.get_variable('kernels', [5, 5, 32, 64], 
+    kernel = tf.get_variable('kernels', [5, 5, 32, 64],
                         initializer=tf.truncated_normal_initializer())
     biases = tf.get_variable('biases', [64],
                         initializer=tf.random_normal_initializer())
@@ -109,7 +109,7 @@ with tf.name_scope('loss'):
 
 # Step 7: define training op
 # using gradient descent with learning rate of LEARNING_RATE to minimize cost
-optimizer = tf.train.AdamOptimizer(LEARNING_RATE).minimize(loss, 
+optimizer = tf.train.AdamOptimizer(LEARNING_RATE).minimize(loss,
                                         global_step=global_step)
 
 with tf.Session() as sess:
@@ -121,7 +121,7 @@ with tf.Session() as sess:
     # if that checkpoint exists, restore from checkpoint
     if ckpt and ckpt.model_checkpoint_path:
         saver.restore(sess, ckpt.model_checkpoint_path)
-    
+
     initial_step = global_step.eval()
 
     start_time = time.time()
@@ -130,27 +130,27 @@ with tf.Session() as sess:
     total_loss = 0.0
     for index in range(initial_step, n_batches * N_EPOCHS): # train the model n_epochs times
         X_batch, Y_batch = mnist.train.next_batch(BATCH_SIZE)
-        _, loss_batch = sess.run([optimizer, loss], 
-                                feed_dict={X: X_batch, Y:Y_batch, dropout: DROPOUT}) 
+        _, loss_batch = sess.run([optimizer, loss],
+                                feed_dict={X: X_batch, Y:Y_batch, dropout: DROPOUT})
         total_loss += loss_batch
         if (index + 1) % SKIP_STEP == 0:
             print('Average loss at step {}: {:5.1f}'.format(index + 1, total_loss / SKIP_STEP))
             total_loss = 0.0
             saver.save(sess, 'checkpoints/convnet_mnist_new/mnist-convnet', index)
-    
+
     print("Optimization Finished!") # should be around 0.35 after 25 epochs
     print("Total time: {0} seconds".format(time.time() - start_time))
-    
+
     # test the model
     n_batches = int(mnist.test.num_examples/BATCH_SIZE)
     total_correct_preds = 0
     for i in range(n_batches):
         X_batch, Y_batch = mnist.test.next_batch(BATCH_SIZE)
-        _, loss_batch, logits_batch = sess.run([optimizer, loss, logits], 
-                                        feed_dict={X: X_batch, Y:Y_batch, dropout: DROPOUT}) 
+        _, loss_batch, logits_batch = sess.run([optimizer, loss, logits],
+                                        feed_dict={X: X_batch, Y:Y_batch, dropout: DROPOUT})
         preds = tf.nn.softmax(logits_batch)
         correct_preds = tf.equal(tf.argmax(preds, 1), tf.argmax(Y_batch, 1))
         accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32))
-        total_correct_preds += sess.run(accuracy)   
-    
+        total_correct_preds += sess.run(accuracy)
+
     print("Accuracy {0}".format(total_correct_preds/mnist.test.num_examples))

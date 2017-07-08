@@ -1,3 +1,6 @@
+VENV/
+venv/
+.vscode/
 
 *.pdf
 

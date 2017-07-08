@@ -41,7 +41,7 @@ def read_from_tfrecord(filenames):
     reader = tf.TFRecordReader()
     _, tfrecord_serialized = reader.read(tfrecord_file_queue)
 
-    # label and image are stored as bytes but could be stored as 
+    # label and image are stored as bytes but could be stored as
     # int64 or float64 values in a serialized tf.Example protobuf.
     tfrecord_features = tf.parse_single_example(tfrecord_serialized,
                         features={
@@ -68,12 +68,12 @@ def read_tfrecord(tfrecord_file):
         coord.join(threads)
 
     # plt.imshow(image)
-    # plt.show() 
+    # plt.show()
 
 def main():
-    # assume the image has the label Chihuahua. 
+    # assume the image has the label Chihuahua.
     # in practice, you'd want to use binary numbers for your labels to save space
-    label = 'friday' 
+    label = 'friday'
     image_file = IMAGE_PATH + 'friday.jpg'
     tfrecord_file = IMAGE_PATH + 'friday.tfrecord'
     write_tfrecord(label, image_file, tfrecord_file)

@@ -34,4 +34,3 @@ d = tf.random_uniform([], -10, 10)
 with tf.Session() as sess:
     print sess.run(c) # >> -4.00752
     print sess.run(d) # >> -2.98339
-    
