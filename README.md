@@ -32,6 +32,8 @@ Convolutional GRU (CRGU) (by Lukasz Kaiser)
 
 
 ## References<br>
-The following links are the aforementioned excellent tutorials in the slides:
+The following links are the aforementioned excellent tutorials in the [slides](http://web.stanford.edu/class/cs20si/syllabus.html):
 
-    - [Structuring Your TensorFlow Models](http://danijar.com/structuring-your-tensorflow-models/)
+  - ***Sebastian Ruder*** [An overview of gradient descent optimization algorithms](http://ruder.io/optimizing-gradient-descent/)
+  - ***Danijar Hafner*** [Structuring Your TensorFlow Models](http://danijar.com/structuring-your-tensorflow-models/)
+
