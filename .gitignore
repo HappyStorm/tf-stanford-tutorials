@@ -1,6 +1,8 @@
 VENV/
 venv/
 .vscode/
+data/mnist
+examples/tensorboard_graph
 
 *.pdf
 

@@ -14,7 +14,7 @@ import tensorflow as tf
 
 x = tf.random_uniform([])  # Empty array as shape creates a scalar.
 y = tf.random_uniform([])
-out = tf.cond(tf.less(x, y), lambda: tf.add(x, y), lambda: tf.sub(x, y))
+out = tf.cond(tf.less_equal(x, y), lambda: tf.sub(x, y), lambda: tf.add(x, y))
 
 ###############################################################################
 # 1b: Create two 0-d tensors x and y randomly selected from -1 and 1.
@@ -25,7 +25,7 @@ out = tf.cond(tf.less(x, y), lambda: tf.add(x, y), lambda: tf.sub(x, y))
 # YOUR CODE
 
 ###############################################################################
-# 1c: Create the tensor x of the value [[0, -2, -1], [0, 1, 2]] 
+# 1c: Create the tensor x of the value [[0, -2, -1], [0, 1, 2]]
 # and y as a tensor of zeros with the same shape as x.
 # Return a boolean tensor that yields Trues if x equals y element-wise.
 # Hint: Look up tf.equal().
@@ -34,7 +34,7 @@ out = tf.cond(tf.less(x, y), lambda: tf.add(x, y), lambda: tf.sub(x, y))
 # YOUR CODE
 
 ###############################################################################
-# 1d: Create the tensor x of value 
+# 1d: Create the tensor x of value
 # [29.05088806,  27.61298943,  31.19073486,  29.35532951,
 #  30.97266006,  26.67541885,  38.08450317,  20.74983215,
 #  34.94445419,  34.45999146,  29.06485367,  36.01657104,

@@ -17,7 +17,7 @@ n_epochs = 10
 
 # Step 1: Read in data
 # using TF Learn's built in function to load MNIST data to the folder data/mnist
-mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
+mnist = input_data.read_data_sets('../data/mnist', one_hot=True)
 
 # Step 2: create placeholders for features and labels
 # each image in the MNIST data is of shape 28*28 = 784
@@ -62,9 +62,9 @@ with tf.Session() as sess:
             #
             #
             total_loss += loss_batch
-        print 'Average loss epoch {0}: {1}'.format(i, total_loss/n_batches)
+        print('Average loss epoch {0}: {1}'.format(i, total_loss/n_batches))
 
-    print 'Total time: {0} seconds'.format(time.time() - start_time)
+    print('Total time: {0} seconds'.format(time.time() - start_time))
 
     print('Optimization Finished!') # should be around 0.35 after 25 epochs
 
@@ -79,4 +79,4 @@ with tf.Session() as sess:
         accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32)) # need numpy.count_nonzero(boolarr) :(
         total_correct_preds += sess.run(accuracy)
 
-    print 'Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples)
+    print('Accuracy {0}'.format(total_correct_preds/mnist.test.num_examples))
