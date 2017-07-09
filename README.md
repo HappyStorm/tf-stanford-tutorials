@@ -32,8 +32,14 @@ Convolutional GRU (CRGU) (by Lukasz Kaiser)
 
 
 ## References<br>
+
+### Tutorials<br>
 The following links are the aforementioned excellent tutorials in the [slides](http://web.stanford.edu/class/cs20si/syllabus.html):
 
-  - ***Sebastian Ruder*** [An overview of gradient descent optimization algorithms](http://ruder.io/optimizing-gradient-descent/)
-  - ***Danijar Hafner*** [Structuring Your TensorFlow Models](http://danijar.com/structuring-your-tensorflow-models/)
+  - ***Sebastian Ruder***: [An Overview of Gradient Descent Optimization Algorithms](http://ruder.io/optimizing-gradient-descent/)
+  - ***Danijar Hafner***: [Structuring Your TensorFlow Models](http://danijar.com/structuring-your-tensorflow-models/)
 
+### Papers<br>
+The following papers will be very useful for understanding the course further more:
+
+  - Bengio, Yoshua. "***[Practical recommendations for gradient-based training of deep architectures.](https://arxiv.org/pdf/1206.5533.pdf)***" Neural networks: Tricks of the trade. Springer Berlin Heidelberg, 2012. 437-478.
