@@ -31,4 +31,7 @@ Demonstration of the danger of lazy loading <br>
 Convolutional GRU (CRGU) (by Lukasz Kaiser)
 
 
+## References<br>
+The following links are the aforementioned excellent tutorials in the slides:
 
+    - [Structuring Your TensorFlow Models](http://danijar.com/structuring-your-tensorflow-models/)
